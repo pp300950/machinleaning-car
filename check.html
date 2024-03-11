@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // เรียกข้อมูลที่ถูกบันทึกไว้ใน localStorage
+var bestBrainData = localStorage.getItem("bestBrain");
+
+// ตรวจสอบว่าข้อมูลที่ได้รับมาไม่เป็น null หรือไม่
+if (bestBrainData !== null) {
+    // ถ้าข้อมูลไม่ใช่ null แปลงข้อมูล JSON เป็น JavaScript object และเก็บไว้ในตัวแปร
+    var bestBrain = JSON.parse(bestBrainData);
+
+    // ทำสิ่งที่คุณต้องการกับข้อมูลที่ได้รับ
+    // เช่น แสดงข้อมูลหรือนำไปใช้งานต่อ
+    console.log(bestBrain);
+} else {
+    console.log("ไม่มีข้อมูล bestBrain ที่ถูกบันทึกไว้ใน localStorage");
+}
+
+
+    </script>
+</body>
+</html>

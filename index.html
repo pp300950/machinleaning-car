@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>car</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+    <canvas id="carCanvas"></canvas>
+    <div id="verticalButtons">
+        <button onclick="save()">💾</button>
+        <button onclick="discard()">🗑️</button>
+    </div>
+    <p id="countdown"></p>
+<p id="countdown2"></p>
+
+<script>
+    let saveCount = localStorage.getItem("SaveCount") || 0;
+    const maxSaveCount = 10;
+    const refreshInterval = 60 * 1000;
+
+    window.onload = function() {
+        countdownRefresh();
+    };
+
+    function savet() {
+        localStorage.setItem("SaveCount", saveCount);
+    }
+
+    function countdownRefresh() {
+        let countdownElement = document.getElementById('countdown');
+        let countdownElement2 = document.getElementById('countdown2');
+
+        let remainingTime = refreshInterval / 1000;
+
+        countdownElement.innerHTML = "รีเฟรชในอีก " + remainingTime + " วินาที";
+        countdownElement2.innerHTML = "จำนวนครั้ง :" + saveCount;
+
+        let countdownInterval = setInterval(function() {
+            remainingTime--;
+            countdownElement.innerHTML = "รีเฟรชในอีก " + remainingTime + " วินาที";
+        let ccc=true;
+            if (remainingTime <= 0) {
+                clearInterval(countdownInterval);
+                saveCount++;
+                savet();
+                if (saveCount <= maxSaveCount) {  
+                    location.reload();
+                }
+            }
+        }, 1000);
+    }
+</script>
+
+
+    
+    <canvas id="networkCanvas"></canvas>
+    <script src="visualizer.js"></script>
+    <script src="network.js"></script>
+    <script src="sensor.js"></script>
+    <script src="utils.js"></script>
+    <script src="road.js"></script>
+    <script src="controls.js"></script>
+    <script src="car.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
